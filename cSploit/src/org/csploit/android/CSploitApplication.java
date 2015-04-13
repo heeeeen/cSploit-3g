@@ -64,7 +64,7 @@ public class CSploitApplication extends Application {
 
     ACRA.init(this);
 
-    // initialize the system
+    // initialize the system, Global initializaiton @h33n
     try {
       System.init(this);
     } catch (Exception e) {
@@ -76,6 +76,7 @@ public class CSploitApplication extends Application {
     ACRA.setConfig(ACRA.getConfig().setApplicationLogFile(System.getCorePath() + "/cSploitd.log"));
 
     // load system modules even if the initialization failed
+    // Register some system module
     System.registerPlugin(new RouterPwn());
     System.registerPlugin(new Traceroute());
     System.registerPlugin(new PortScanner());

@@ -366,7 +366,8 @@ public class System
   }
 
   public static boolean checkNetworking(final Activity current){
-    if(!Network.isWifiConnected(mContext)){
+    //if(!Network.isWifiConnected(mContext)){
+    if(!Network.isConnectivityAvailable(mContext)){ //for 3g use @h33n
       AlertDialog.Builder builder = new AlertDialog.Builder(current);
 
       builder.setCancelable(false);

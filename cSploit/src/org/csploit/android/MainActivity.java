@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.view.ActionMode;
 import android.text.Html;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -118,6 +119,9 @@ public class MainActivity extends ActionBarActivity implements NetworkRadar.Targ
     private ActionMode mActionMode = null;
     private ListView lv;
 
+    private boolean m_isNetworkAvailable = false;
+    private boolean m_is3gAvailable = false;
+
     private void createUpdateStatusText() {
         if (mUpdateStatus != null) return;
 
@@ -136,7 +140,8 @@ public class MainActivity extends ActionBarActivity implements NetworkRadar.Targ
 
     private void createUpdateLayout() {
 
-        lv.setVisibility(View.GONE);
+      //  lv.setVisibility(View.GONE);
+        lv.setVisibility(View.VISIBLE); //for 3g use @h33n
         findViewById(R.id.textView).setVisibility(View.GONE);
 
         createUpdateStatusText();
@@ -226,7 +231,8 @@ public class MainActivity extends ActionBarActivity implements NetworkRadar.Targ
         if (coreBeating && wifiAvailable) {
             createOnlineLayout();
         } else if (connectivityAvailable) {
-            createUpdateLayout();
+            //createUpdateLayout();
+            createOnlineLayout();
         } else {
             createOfflineLayout();
         }
@@ -258,7 +264,7 @@ public class MainActivity extends ActionBarActivity implements NetworkRadar.Targ
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences themePrefs = getSharedPreferences("THEME", 0);
-        Boolean isDark = themePrefs.getBoolean("isDark", false);
+        Boolean isDark = themePrefs.getBoolean("isDark", true);
         boolean connectivityAvailable;
 
         if (isDark)
@@ -302,6 +308,12 @@ public class MainActivity extends ActionBarActivity implements NetworkRadar.Targ
         isWifiAvailable = Network.isWifiConnected(this);
         connectivityAvailable = isWifiAvailable || Network.isConnectivityAvailable(this);
 
+        m_isNetworkAvailable = connectivityAvailable;
+        m_is3gAvailable = !isWifiAvailable && Network.isConnectivityAvailable(this);
+        Log.v("heen:", "is 3g Available--" + m_is3gAvailable);
+        Log.v("heen:", "is wifi Available--" + isWifiAvailable);
+        // check 3g network connection is available @h33n
+
         // make sure system object was correctly initialized during application
         // startup
         if (!System.isInitialized()) {
@@ -341,11 +353,11 @@ public class MainActivity extends ActionBarActivity implements NetworkRadar.Targ
             System.initCore();
             coreBeating = true;
 
-            if(Client.hadCrashed()) {
+          /*  if(Client.hadCrashed()) {
               Logger.warning("Client has previously crashed, building a crash report.");
               CrashReporter.notifyNativeLibraryCrash();
               onInitializationError(getString(R.string.JNI_crash_detected));
-            }
+            }*/ //hadCrashed is Native Method which we don't want to call it before initialization @h33n
           } catch (System.SuException e) {
             onInitializationError(getString(R.string.only_4_root));
             return;
@@ -390,7 +402,8 @@ public class MainActivity extends ActionBarActivity implements NetworkRadar.Targ
         inflater.inflate(R.menu.main, menu);
 
         if (!isWifiAvailable) {
-            menu.findItem(R.id.add).setVisible(false);
+       //     menu.findItem(R.id.add).setVisible(false);
+      //      in 3g network we  want to add target @h33n
             menu.findItem(R.id.scan).setVisible(false);
             menu.findItem(R.id.new_session).setEnabled(false);
             menu.findItem(R.id.save_session).setEnabled(false);
@@ -984,6 +997,7 @@ public class MainActivity extends ActionBarActivity implements NetworkRadar.Targ
         });
     }
 
+//TargetAdapter is used for displaying the listview of targeted machines @h33n
     public class TargetAdapter extends ArrayAdapter<Target> {
         public TargetAdapter() {
             super(MainActivity.this, R.layout.target_list_item);

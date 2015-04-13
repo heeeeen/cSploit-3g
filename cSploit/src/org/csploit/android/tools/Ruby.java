@@ -39,7 +39,7 @@ public class Ruby extends Tool {
     if(mEnabled)
       setupEnvironment();
 
-    registerSettingReceiver();
+//    registerSettingReceiver();
   }
 
   @Override

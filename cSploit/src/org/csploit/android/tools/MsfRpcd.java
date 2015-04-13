@@ -28,7 +28,7 @@ public class MsfRpcd extends Msf {
     if(mEnabled)
       setupEnvironment();
 
-    registerSettingReceiver();
+//    registerSettingReceiver();
   }
 
   /**

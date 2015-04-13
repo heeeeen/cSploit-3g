@@ -24,6 +24,7 @@ import android.net.DhcpInfo;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.util.Log;
 
 import org.apache.commons.net.util.SubnetUtils;
 
@@ -113,12 +114,15 @@ public class Network
     mNetmask = getNetmask();
     mBase = new IP4Address(mInfo.netmask & mInfo.gateway);
 
-    if(isConnected() == false)
-      throw new NoRouteToHostException("Not connected to any WiFi access point.");
+    if(!isWifiConnected(context))
+      Log.v("heen:", mConnectivityManager.getActiveNetworkInfo().toString()); // @h33n for debug
+      //throw new NoRouteToHostException("Not connected to any WiFi access point.");//uncomment it for use in 3g @h33n
+
 
     else{
       try{
         mInterface = NetworkInterface.getByInetAddress(getLocalAddress());
+        Log.v("heen:", mInterface.toString());
         if(mInterface == null)
           throw new IllegalStateException("Error retrieving network interface.");
       }
