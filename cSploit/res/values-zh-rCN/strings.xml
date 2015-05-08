@@ -1,7 +1,7 @@
 <resources>
-<string name="app_name">cSploit</string>
+<string name="app_name">cSploit-3g</string>
 <string name="menu_settings">设置</string>
-<string name="title_activity_main">cSploit</string>
+<string name="title_activity_main">cSploit-3g</string>
 <string name="crash_toast_text">额！崩溃了...不过我将给我的开发者发送报告来帮助解决这个问题。</string>
 <string name="toggle_button">切换按钮</string>
 <string name="enter_redirection_details">在下方键入跳转详情:</string>

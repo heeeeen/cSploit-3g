@@ -271,6 +271,7 @@ public class Target
   private final ArrayList<Exploit> exploits = new ArrayList<Target.Exploit>();
   private ArrayList<Session> mSessions = new ArrayList<Session>();
 
+// Filter the input of IP or domain name by regex @h33n
   public static Target getFromString(String string){
     final Pattern PARSE_PATTERN = Pattern.compile("^(([a-z]+)://)?([0-9a-z\\-\\.]+)(:([\\d]+))?[0-9a-z\\-\\./]*$", Pattern.CASE_INSENSITIVE);
     final Pattern IP_PATTERN = Pattern.compile("^[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3}\\.[\\d]{1,3}$");

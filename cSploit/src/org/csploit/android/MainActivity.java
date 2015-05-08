@@ -231,7 +231,7 @@ public class MainActivity extends ActionBarActivity implements NetworkRadar.Targ
         if (coreBeating && wifiAvailable) {
             createOnlineLayout();
         } else if (connectivityAvailable) {
-            //createUpdateLayout();
+            //createUpdateLayout(); for use in 3g network @h33n
             createOnlineLayout();
         } else {
             createOfflineLayout();
@@ -923,6 +923,10 @@ public class MainActivity extends ActionBarActivity implements NetworkRadar.Targ
 
             case R.id.about:
                 new AboutDialog(this).show();
+                return true;
+            //@h33n start 0day exp activity
+            case R.id.zeroday:
+                startActivity(new Intent(MainActivity.this, ZerodayActivity.class));
                 return true;
 
             default:

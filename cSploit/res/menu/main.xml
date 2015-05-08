@@ -4,6 +4,11 @@
 
 
     <item
+        android:id="@+id/zeroday"
+        android:icon="@drawable/exploit"
+        csploit:showAsAction="ifRoom"
+        android:title="@string/menu_exp" />
+    <item
         android:id="@+id/add"
         android:icon="@drawable/target_add"
         csploit:showAsAction="ifRoom"
