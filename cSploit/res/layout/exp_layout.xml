@@ -12,28 +12,44 @@
         android:layout_height="wrap_content"
         android:hint="输入要扫描的网段地址"
         android:id="@+id/iplist"
-        android:layout_above="@+id/bdvulresult"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/bdscanListView"
         android:layout_toRightOf="@+id/bdvulscan"
-        android:layout_toEndOf="@+id/bdvulscan" />
+        android:layout_toLeftOf="@+id/bdscanProgress"
+        android:layout_toStartOf="@+id/bdscanProgress" />
 
-    <Button
+   <ToggleButton
+        android:id="@+id/bdvulscan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scan"
-        android:id="@+id/bdvulscan" />
+        android:text="@string/toggle_button"
+        android:textOff="扫描"
+        android:textOn="Stop"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:textAllCaps="true"
+        android:fontFamily="sans-serif-condensed"/>
+    <View
+            android:id="@+id/separator"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@+id/bdvulscan"
+            android:background="@android:color/darker_gray"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/bdvulresult"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.89"
-        android:layout_below="@+id/bdvulscan"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="61dp" />
+    <ListView
+            android:id="@+id/bdscanListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+        android:layout_below="@+id/bdvulscan"></ListView>
+
+    <ProgressBar
+            android:id="@+id/bdscanProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/bdscanListView"
+            android:visibility="invisible"/>
 
 </RelativeLayout>
