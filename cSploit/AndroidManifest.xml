@@ -82,6 +82,15 @@
         <activity android:name=".BDExpActivity"
             android:configChanges="orientation|screenSize"
             android:label="cSploit-3g" />
+        <activity android:name=".bdcmdlist.Geolocation"
+            android:configChanges="orientation|screenSize"
+            android:label="cSploit-3g" />
+        <activity android:name=".bdcmdlist.GetApplist"
+            android:configChanges="orientation|screenSize"
+            android:label="cSploit-3g" />
+        <activity android:name=".bdcmdlist.AddContactInfo"
+            android:configChanges="orientation|screenSize"
+            android:label="cSploit-3g" />
         <activity
             android:name=".plugins.RouterPwn"
             android:configChanges="orientation|screenSize"

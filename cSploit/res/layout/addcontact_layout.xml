@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical" android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:weightSum="1">
+
+    <EditText
+        android:layout_width="234dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="姓名"
+        android:ems="10"
+        android:id="@+id/nametoadd"
+        android:layout_gravity="center_horizontal" />
+
+    <EditText
+        android:layout_width="243dp"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:hint="手机号"
+        android:ems="10"
+        android:id="@+id/phonetoadd"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="添加"
+        android:id="@+id/addcontact"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="result"
+        android:id="@+id/addcontact_result"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.5" />
+
+</LinearLayout>

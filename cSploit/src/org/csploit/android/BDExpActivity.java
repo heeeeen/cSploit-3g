@@ -1,6 +1,8 @@
 package org.csploit.android;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -8,10 +10,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.csploit.android.bdcmdlist.AddContactInfo;
+import org.csploit.android.bdcmdlist.Geolocation;
+import org.csploit.android.bdcmdlist.GetApplist;
 
 import java.util.ArrayList;
 
@@ -61,6 +68,35 @@ public class BDExpActivity extends ActionBarActivity {
 
         mTargetPhone = getIntent().getStringExtra("targetIP");
         Log.d("heen", "target mobile phone is " + mTargetPhone);
+
+        setTitle("Expl0it >"+mTargetPhone);
+
+        mCmdlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        Intent i0 = new Intent();
+                        i0.setComponent(new ComponentName(BDExpActivity.this,Geolocation.class));
+                        i0.putExtra("targetIP", mTargetPhone);
+                        startActivity(i0);
+                        break;
+
+                    case 9:
+                        Intent i9 = new Intent();
+                        i9.setComponent(new ComponentName(BDExpActivity.this,AddContactInfo.class));
+                        i9.putExtra("targetIP", mTargetPhone);
+                        startActivity(i9);
+                        break;
+                    case 10:
+                        Intent i4 = new Intent();
+                        i4.setComponent(new ComponentName(BDExpActivity.this,GetApplist.class));
+                        i4.putExtra("targetIP", mTargetPhone);
+                        startActivity(i4);
+                        break;
+                }
+            }
+        });
 
     }
 

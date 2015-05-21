@@ -241,6 +241,7 @@ public class ZerodayActivity extends ActionBarActivity{
         });
 
         mResultList = (ListView) findViewById(R.id.bdscanListView);
+        setTitle("expl0it");
 
 		mListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 		mResultList.setAdapter(mListAdapter);
