@@ -8,14 +8,13 @@
 
 
     <EditText
-        android:layout_width="269dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:hint="输入要扫描的网段地址"
         android:id="@+id/iplist"
-        android:layout_above="@+id/bdscanListView"
+        android:layout_above="@+id/separator"
         android:layout_toRightOf="@+id/bdvulscan"
-        android:layout_toLeftOf="@+id/bdscanProgress"
-        android:layout_toStartOf="@+id/bdscanProgress" />
+        android:layout_toEndOf="@+id/bdvulscan" />
 
    <ToggleButton
         android:id="@+id/bdvulscan"
@@ -27,7 +26,10 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:textAllCaps="true"
-        android:fontFamily="sans-serif-condensed"/>
+        android:fontFamily="sans-serif-condensed"
+       android:layout_alignParentTop="true"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentStart="true" />
     <View
             android:id="@+id/separator"
             android:layout_width="fill_parent"
@@ -41,9 +43,10 @@
             android:id="@+id/bdscanListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-        android:layout_below="@+id/bdvulscan"></ListView>
+        android:layout_below="@+id/separator"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"></ListView>
 
     <ProgressBar
             android:id="@+id/bdscanProgress"

