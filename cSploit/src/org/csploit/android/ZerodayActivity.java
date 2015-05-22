@@ -152,7 +152,7 @@ public class ZerodayActivity extends ActionBarActivity{
                     continue;
                 }
                 Log.d("heen", s + " is vulneralbe!");
-                resultList.add(s+":"+imei+"\nAndroid "+android_info);
+                resultList.add(s+":  "+imei+"\nAndroid "+android_info);
             }
 
             return resultList;

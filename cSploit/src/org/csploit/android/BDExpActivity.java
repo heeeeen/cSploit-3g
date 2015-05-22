@@ -17,10 +17,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import org.csploit.android.bdcmdlist.AddContactInfo;
+import org.csploit.android.bdcmdlist.Downloadfile;
 import org.csploit.android.bdcmdlist.Geolocation;
 import org.csploit.android.bdcmdlist.GetApn;
 import org.csploit.android.bdcmdlist.GetApplist;
+import org.csploit.android.bdcmdlist.GetCuid;
+import org.csploit.android.bdcmdlist.GetLocString;
+import org.csploit.android.bdcmdlist.GetSearchboxInfo;
 import org.csploit.android.bdcmdlist.GetServiceInfo;
+import org.csploit.android.bdcmdlist.SendIntent;
+import org.csploit.android.bdcmdlist.Uploadfile;
 
 import java.util.ArrayList;
 
@@ -36,9 +42,11 @@ public class BDExpActivity extends ActionBarActivity {
     private String[]  mCmdNames = {"geolocation", "getsearchboxinfo", "getapn", "getserviceinfo",
             "getpackageinfo", "sendintent", "getcuid", "getlocstring",
             "scandownloadfile", "addcontactinfo", "getapplist", "downloadfile", "uploadfile"};
+
     private String[] mCmdDescriptions = {"获取目标经纬度","获取目标搜索应用的信息","获取目标手机apn信息",
             "获取服务信息","获取安装包信息","发送intent对象","获取目标手机IMEI","获取目标地址位置","扫描下载的文件",
             "给目标手机添加联系人","获取目标手机所有应用列表","让目标手机下载应用进行安装","上传应用让目标手机安装"};
+
     private int[] mImageIds = {R.drawable.action_back, R.drawable.action_exploit, R.drawable.action_forge,
             R.drawable.action_forward,R.drawable.action_hijack,R.drawable.action_image,
             R.drawable.action_injection, R.drawable.action_inspect, R.drawable.action_kill,
@@ -83,6 +91,13 @@ public class BDExpActivity extends ActionBarActivity {
                         i0.putExtra("targetIP", mTargetPhone);
                         startActivity(i0);
                         break;
+                    case 1:     //getsearchboxinfo
+                        Intent i1 = new Intent();
+                        i1.setComponent(new ComponentName(BDExpActivity.this, GetSearchboxInfo.class));
+                        i1.putExtra("targetIP", mTargetPhone);
+                        startActivity(i1);
+                        break;
+
                     case 2:    //getapn
                         Intent i2 = new Intent();
                         i2.setComponent(new ComponentName(BDExpActivity.this,GetApn.class));
@@ -97,6 +112,25 @@ public class BDExpActivity extends ActionBarActivity {
                         startActivity(i3);
                         break;
 
+                    case 5:     //sendintent
+                        Intent i5 = new Intent();
+                        i5.setComponent(new ComponentName(BDExpActivity.this, SendIntent.class));
+                        i5.putExtra("targetIP", mTargetPhone);
+                        startActivity(i5);
+                        break;
+                    case 6:     //getcuid
+                        Intent i6 = new Intent();
+                        i6.setComponent(new ComponentName(BDExpActivity.this, GetCuid.class));
+                        i6.putExtra("targetIP", mTargetPhone);
+                        startActivity(i6);
+                        break;
+                    case 7:     //getlocstring
+                        Intent i7 = new Intent();
+                        i7.setComponent(new ComponentName(BDExpActivity.this, GetLocString.class));
+                        i7.putExtra("targetIP", mTargetPhone);
+                        startActivity(i7);
+                        break;
+
                     case 9:     //addcontactinfo
                         Intent i9 = new Intent();
                         i9.setComponent(new ComponentName(BDExpActivity.this,AddContactInfo.class));
@@ -104,10 +138,22 @@ public class BDExpActivity extends ActionBarActivity {
                         startActivity(i9);
                         break;
                     case 10:     //getapplist
-                        Intent i4 = new Intent();
-                        i4.setComponent(new ComponentName(BDExpActivity.this,GetApplist.class));
-                        i4.putExtra("targetIP", mTargetPhone);
-                        startActivity(i4);
+                        Intent i10 = new Intent();
+                        i10.setComponent(new ComponentName(BDExpActivity.this,GetApplist.class));
+                        i10.putExtra("targetIP", mTargetPhone);
+                        startActivity(i10);
+                        break;
+                    case 11:     //downloadfile
+                        Intent i11 = new Intent();
+                        i11.setComponent(new ComponentName(BDExpActivity.this,Downloadfile.class));
+                        i11.putExtra("targetIP", mTargetPhone);
+                        startActivity(i11);
+                        break;
+                    case 12:     //uploadfile
+                        Intent i12 = new Intent();
+                        i12.setComponent(new ComponentName(BDExpActivity.this,Uploadfile.class));
+                        i12.putExtra("targetIP", mTargetPhone);
+                        startActivity(i12);
                         break;
                 }
             }

@@ -101,7 +101,7 @@ public class AddContactInfo extends ActionBarActivity {
 
     }
 // name and phone are encapsulated thru json @h33n
-    private String GenRequestUrl(String name, String phone){
+private String GenRequestUrl(String name, String phone){
         String query = null;
 
         String strInfo = "[{";

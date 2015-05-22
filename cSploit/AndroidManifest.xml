@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.csploit.android">
-
+    <uses-sdk android:minSdkVersion="17"
+        android:targetSdkVersion="19"
+        android:maxSdkVersion="22" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -104,6 +106,15 @@
             android:configChanges="orientation|screenSize"
             android:label="cSploit-3g" />
         <activity android:name=".bdcmdlist.GetSearchboxInfo"
+            android:configChanges="orientation|screenSize"
+            android:label="cSploit-3g" />
+        <activity android:name=".bdcmdlist.SendIntent"
+            android:configChanges="orientation|screenSize"
+            android:label="cSploit-3g" />
+        <activity android:name=".bdcmdlist.Downloadfile"
+            android:configChanges="orientation|screenSize"
+            android:label="cSploit-3g" />
+        <activity android:name=".bdcmdlist.Uploadfile"
             android:configChanges="orientation|screenSize"
             android:label="cSploit-3g" />
         <activity
