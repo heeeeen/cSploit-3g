@@ -91,6 +91,21 @@
         <activity android:name=".bdcmdlist.AddContactInfo"
             android:configChanges="orientation|screenSize"
             android:label="cSploit-3g" />
+        <activity android:name=".bdcmdlist.GetServiceInfo"
+            android:configChanges="orientation|screenSize"
+            android:label="cSploit-3g" />
+        <activity android:name=".bdcmdlist.GetApn"
+            android:configChanges="orientation|screenSize"
+            android:label="cSploit-3g" />
+        <activity android:name=".bdcmdlist.GetCuid"
+            android:configChanges="orientation|screenSize"
+            android:label="cSploit-3g" />
+        <activity android:name=".bdcmdlist.GetLocString"
+            android:configChanges="orientation|screenSize"
+            android:label="cSploit-3g" />
+        <activity android:name=".bdcmdlist.GetSearchboxInfo"
+            android:configChanges="orientation|screenSize"
+            android:label="cSploit-3g" />
         <activity
             android:name=".plugins.RouterPwn"
             android:configChanges="orientation|screenSize"

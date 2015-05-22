@@ -18,7 +18,9 @@ import android.widget.TextView;
 
 import org.csploit.android.bdcmdlist.AddContactInfo;
 import org.csploit.android.bdcmdlist.Geolocation;
+import org.csploit.android.bdcmdlist.GetApn;
 import org.csploit.android.bdcmdlist.GetApplist;
+import org.csploit.android.bdcmdlist.GetServiceInfo;
 
 import java.util.ArrayList;
 
@@ -75,20 +77,33 @@ public class BDExpActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
-                    case 0:
+                    case 0:    //geolocation
                         Intent i0 = new Intent();
                         i0.setComponent(new ComponentName(BDExpActivity.this,Geolocation.class));
                         i0.putExtra("targetIP", mTargetPhone);
                         startActivity(i0);
                         break;
+                    case 2:    //getapn
+                        Intent i2 = new Intent();
+                        i2.setComponent(new ComponentName(BDExpActivity.this,GetApn.class));
+                        i2.putExtra("targetIP", mTargetPhone);
+                        startActivity(i2);
+                        break;
 
-                    case 9:
+                    case 3:     //getserviceinfo
+                        Intent i3 = new Intent();
+                        i3.setComponent(new ComponentName(BDExpActivity.this, GetServiceInfo.class));
+                        i3.putExtra("targetIP", mTargetPhone);
+                        startActivity(i3);
+                        break;
+
+                    case 9:     //addcontactinfo
                         Intent i9 = new Intent();
                         i9.setComponent(new ComponentName(BDExpActivity.this,AddContactInfo.class));
                         i9.putExtra("targetIP", mTargetPhone);
                         startActivity(i9);
                         break;
-                    case 10:
+                    case 10:     //getapplist
                         Intent i4 = new Intent();
                         i4.setComponent(new ComponentName(BDExpActivity.this,GetApplist.class));
                         i4.putExtra("targetIP", mTargetPhone);
